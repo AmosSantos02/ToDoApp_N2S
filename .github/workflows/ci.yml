@@ -25,5 +25,5 @@ jobs:
 
       - name: Executar testes unitarios
         run: |
-          pytest tests/units
+          pytest tests/unit
           pytest tests/integration
