@@ -1,0 +1,29 @@
+name: Pipeline CI/CD
+
+on: 
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  testes_unitarios:
+    runs-on: ubuntu-latest
+    steps:
+      # AQUI É INTERESSANTE TER UM NOME SIGNIFICATIVO PARA MOSTRAR E FICAR CLARO O QUE É NO GITHUB
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Instalar o ambiente virtual
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      
+      - name: Instalar dependências
+        run:
+         pip install -r requirements.txt
+
+      - name: Executar testes unitarios
+        run: |
+          pytest tests/units
+          pytest tests/integration
